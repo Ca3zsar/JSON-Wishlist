@@ -48,3 +48,21 @@ def readJson():
     numberOfProducts = len(data["products"])
     
     return data
+
+def getNameURL():
+    while True:
+        print("Please enter the name of the product: ")
+        name = input()
+        
+        if name != '':
+            break
+    
+    while True:
+        print("Please enter the url of the product: ")
+        url = input()
+        
+        if url != '':
+            break
+        
+    return name,url
+    

@@ -33,11 +33,10 @@ def addItem():
     
     product = {} # Create an empty dictionary.
     
-    print("Please enter the name of the product: ")
-    product["name"] = input()
+    name, url = auxFunctions.getNameURL()
     
-    print("Please enter the url of the product: ")
-    product["url"] = input()
+    product["name"] = name
+    product["url"] = url
     
     now = datetime.now()
     dateAndTime = now.strftime("%d/%m/%Y %H:%M:%S")
@@ -73,3 +72,48 @@ def removeItem():
                 
                 return
     
+    
+def editItem():
+    """ Edit an item from the list """
+    
+    showList()
+    
+    while True:
+        print("Type in the index of the product you want to edit or 'q' to return: ")
+        choice = input()
+        
+        if choice == 'q':
+            return
+        else:
+            if not (choice.isdecimal() 
+                    and int(choice) <= auxFunctions.numberOfProducts):
+                continue
+            else:
+                choice = int(choice)
+            
+                data = auxFunctions.readJson()
+                products = data["products"]
+                tempProduct = products.pop(choice-1)
+                
+                auxFunctions.writeJson(data,"remove")
+                
+                choice = int(choice)
+                
+                #Edit the item from the value list.
+                name = input("Enter a new name or press enter to leave it as it is: ")
+                
+                if name != '':
+                    tempProduct["name"] = name
+                    
+                url = input("Enter a new url or press enter to leave it as it is: ")
+                
+                if url != '':
+                    tempProduct["url"] = url
+                    
+                auxFunctions.writeJson(tempProduct,"add")
+                
+                return
+                    
+                
+            
+            
