@@ -1,5 +1,6 @@
 import json
 from os.path import exists
+from os import remove
 
 infoFile = "data.json"
 numberOfProducts = 0
@@ -49,6 +50,7 @@ def readJson():
     
     return data
 
+
 def getNameURL():
     while True:
         print("Please enter the name of the product: ")
@@ -65,4 +67,14 @@ def getNameURL():
             break
         
     return name,url
+
+
+def deleteJson():
+    """ Delete the JSON file """
+    if exists(infoFile):
+        remove(infoFile)
+        return True
+    else:
+        return False
+        
     

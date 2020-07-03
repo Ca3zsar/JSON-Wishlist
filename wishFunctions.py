@@ -48,6 +48,11 @@ def addItem():
 def removeItem():
     """ Removes an existing item from the wishlist. """
     
+    # If there are no items, return.
+    if auxFunctions.numberOfProducts == 0:
+        print("There are no items to remove!")
+        return
+    
     showList()
     
     while True:
@@ -75,6 +80,11 @@ def removeItem():
     
 def editItem():
     """ Edit an item from the list """
+    
+    # If there is no item in the list, return.
+    if auxFunctions.numberOfProducts == 0:
+        print("There are no items to edit!")
+        return 
     
     showList()
     
@@ -114,6 +124,13 @@ def editItem():
                 
                 return
                     
+
+def clearList():
+    """ Clear the list """
+    if auxFunctions.deleteJson():
+        auxFunctions.createJson()
+    else:
+        print("There is no list at the moment!")
                 
             
             

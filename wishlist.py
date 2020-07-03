@@ -10,6 +10,7 @@ options = [
            "Add an item",
            "Delete an item",
            "Edit an item",
+           "Clear the list",
            "Quit"
            ]
 
@@ -20,8 +21,8 @@ def menu():
             print(f"{i+1}. {options[i]} ")
         
         while True:
-            choice = input("Please enter an option ( 1-5 ): ")
-            if choice.isdecimal() and choice in "12345":
+            choice = input("Please enter an option ( 1-6 ): ")
+            if choice.isdecimal() and choice in "123456":
                 break
             else:
                 continue
@@ -41,7 +42,10 @@ def menu():
         if choice == 4: # Edit an item
             wishFunctions.editItem()
         
-        if choice == 5: # Exit the program
+        if choice == 5: # Clear the list
+            wishFunctions.clearList()
+        
+        if choice == 6: # Exit the program
             sys.exit()
             
 menu()
